@@ -4,7 +4,7 @@ class ServicoDePagamento {
   }
 
   pagar(codigoBarras, empresa, valor) {
-    const categoria = valor > 100 ? 'cara' : 'padrao';
+    const categoria = valor > 100 ? 'cara' : 'padrão';
 
     const pagamento = {
       codigoBarras,

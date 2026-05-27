@@ -12,13 +12,13 @@ describe('ServicoDePagamento', () => {
       assert.strictEqual(resultado.categoria, 'cara');
     });
 
-    it('deve registrar um pagamento com categoria "padrao" quando valor <= 100', () => {
+    it('deve registrar um pagamento com categoria "padrão" quando valor <= 100', () => {
       const servico = new ServicoDePagamento();
 
       servico.pagar('1234-5678-9012', 'Copel', 89.9);
 
       const resultado = servico.consultarUltimoPagamento();
-      assert.strictEqual(resultado.categoria, 'padrao');
+      assert.strictEqual(resultado.categoria, 'padrão');
     });
 
     it('deve salvar corretamente as propriedades do pagamento', () => {
@@ -34,13 +34,13 @@ describe('ServicoDePagamento', () => {
   });
 
   describe('consultarUltimoPagamento()', () => {
-    it('deve retornar undefined quando nao houver pagamentos', () => {
+    it('deve retornar undefined quando não houver pagamentos', () => {
       const servico = new ServicoDePagamento();
 
       assert.strictEqual(servico.consultarUltimoPagamento(), undefined);
     });
 
-    it('deve retornar apenas o ultimo pagamento quando houver varios', () => {
+    it('deve retornar apenas o último pagamento quando houver vários', () => {
       const servico = new ServicoDePagamento();
 
       servico.pagar('1111-1111-1111', 'Empresa A', 50.0);
