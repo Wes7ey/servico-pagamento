@@ -1,9 +1,9 @@
-const assert = require('node:assert');
-const ServicoDePagamento = require('../src/ServicoDePagamento');
+import assert from 'node:assert';
+import ServicoDePagamento from '../src/ServicoDePagamento.js';
 
 describe('ServicoDePagamento', () => {
   describe('pagar()', () => {
-    it('deve registrar um pagamento com categoria "cara" quando valor > 100', () => {
+    it('deve registrar pagamento com categoria "cara" quando valor > 100', () => {
       const servico = new ServicoDePagamento();
 
       servico.pagar('0987-7656-3475', 'Samar', 156.87);
@@ -12,7 +12,7 @@ describe('ServicoDePagamento', () => {
       assert.strictEqual(resultado.categoria, 'cara');
     });
 
-    it('deve registrar um pagamento com categoria "padrão" quando valor <= 100', () => {
+    it('deve registrar pagamento com categoria "padrão" quando valor <= 100', () => {
       const servico = new ServicoDePagamento();
 
       servico.pagar('1234-5678-9012', 'Copel', 89.9);
@@ -21,15 +21,15 @@ describe('ServicoDePagamento', () => {
       assert.strictEqual(resultado.categoria, 'padrão');
     });
 
-    it('deve salvar corretamente as propriedades do pagamento', () => {
+    it('deve salvar código de barras, empresa e valor', () => {
       const servico = new ServicoDePagamento();
 
       servico.pagar('0987-7656-3475', 'Samar', 156.87);
-      const resultado = servico.consultarUltimoPagamento();
+      const pagamento = servico.consultarUltimoPagamento();
 
-      assert.strictEqual(resultado.codigoBarras, '0987-7656-3475');
-      assert.strictEqual(resultado.empresa, 'Samar');
-      assert.strictEqual(resultado.valor, 156.87);
+      assert.strictEqual(pagamento.codigoBarras, '0987-7656-3475');
+      assert.strictEqual(pagamento.empresa, 'Samar');
+      assert.strictEqual(pagamento.valor, 156.87);
     });
   });
 

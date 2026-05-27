@@ -1,24 +1,39 @@
-class ServicoDePagamento {
-  constructor() {
-    this.pagamentos = [];
-  }
+const pagamentos = [
+  {
+    codigoBarras: '1111-1111-1111',
+    empresa: 'Empresa A',
+    valor: 50.0,
+    categoria: 'padrão',
+  },
+  {
+    codigoBarras: '2222-2222-2222',
+    empresa: 'Empresa B',
+    valor: 200.0,
+    categoria: 'cara',
+  },
+  {
+    codigoBarras: '3333-3333-3333',
+    empresa: 'Empresa C',
+    valor: 30.0,
+    categoria: 'padrão',
+  },
+];
 
-  pagar(codigoBarras, empresa, valor) {
-    const categoria = valor > 100 ? 'cara' : 'padrão';
+function ServicoDePagamento() {
+  const lista = [];
 
-    const pagamento = {
+  this.pagar = function (codigoBarras, empresa, valor) {
+    lista.push({
       codigoBarras,
       empresa,
       valor,
-      categoria,
-    };
+      categoria: valor > 100 ? 'cara' : 'padrão',
+    });
+  };
 
-    this.pagamentos.push(pagamento);
-  }
-
-  consultarUltimoPagamento() {
-    return this.pagamentos[this.pagamentos.length - 1];
-  }
+  this.consultarUltimoPagamento = function () {
+    return lista[lista.length - 1];
+  };
 }
 
-module.exports = ServicoDePagamento;
+export default ServicoDePagamento;
